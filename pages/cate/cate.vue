@@ -1,4 +1,8 @@
 <template>
+	<!-- 使用自定义的搜索组件 -->
+	<!-- <my-search :backgroundColor="'pink'" :radius="3"></my-search> -->
+	<my-search></my-search>
+
 	<view class="scroll_view_container">
 		<!-- 左侧的滚动视图区域 -->
 		<!-- style="100vh" 也可以做到沾满全屏 -->
@@ -55,7 +59,7 @@ onMounted(() => {
 	// 获取系统信息同步接口
 	const sysInfo = uni.getSystemInfoSync();
 	console.log(sysInfo);
-	wh.value = sysInfo.windowHeight;
+	wh.value = sysInfo.windowHeight - 50;
 
 	getCateList();
 });
@@ -71,6 +75,7 @@ async function getCateList() {
 	console.log(cateLeve2.data);
 }
 
+// 点击按钮发生改变时
 function activeChange(index) {
 	active.value = index;
 	// 为二级分类列表重新赋值
@@ -85,6 +90,9 @@ function gotoGoodsList(item3) {
 		url: '/subpkg/goods_list/goods_list?cid=' + item3.cat_id
 	});
 }
+
+// uni.$on 监听全局的自定义事件，事件由 uni.$emit 触发，回调函数会接收事件触发函数的传入参数。
+// uni.$on('click', data => console.log(data));
 </script>
 
 <style lang="scss">
@@ -148,5 +156,12 @@ function gotoGoodsList(item3) {
 
 .cate_lv3_list .cate_lv3_item text {
 	font-size: 12px;
+}
+
+// 让搜索框固定在顶部的第一种方法
+my-search {
+	position: fixed;
+	width: 100%;
+	z-index: 1;
 }
 </style>

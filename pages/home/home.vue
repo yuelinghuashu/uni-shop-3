@@ -1,4 +1,9 @@
 <template>
+	<!-- 使用自定义的搜索组件 -->
+	<view class="search_box">
+		<!-- 首页的搜索框 -->
+		<my-search></my-search>
+	</view>
 	<!-- 轮播图区域 -->
 	<!-- indicator-dots: boolean 是否显示面板指示点 -->
 	<!-- indicator-color: color 指示点颜色 -->
@@ -167,5 +172,15 @@ image {
 .floor_img_box {
 	display: flex;
 	padding-left: 10rpx;
+}
+
+// 让搜索框固定在顶部的第二种方法(推荐这种方法，因为比较简单)
+.search_box {
+	// 设置定位效果为 “吸顶”
+	position: sticky;
+	// 吸顶的位置
+	top: 0;
+	// 提高层级，防止被轮播图覆盖
+	z-index: 999;
 }
 </style>
