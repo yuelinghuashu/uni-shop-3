@@ -41,7 +41,9 @@
 			"path": "goods_list/goods_list",
 			"style": {
 				"navigationBarTitleText": "黑马优购",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": true,
+				"backgroundColor": "#f8f8f8",
+				"onReachBottomDistance": 150
 			}
 
 		}, {
