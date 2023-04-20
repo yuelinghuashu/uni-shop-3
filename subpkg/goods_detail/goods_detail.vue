@@ -38,8 +38,12 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref, watch } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
+import { useCounterStore } from '@/stores/counter';
+
+//使用pinia
+const store = useCounterStore();
 
 // 在onMounted中获取商品的id，并调用商品详情的方法
 onLoad(options => {
@@ -70,7 +74,7 @@ const options = reactive({
 		{
 			icon: 'cart',
 			text: '购物车',
-			info: 9
+			info: 0
 		}
 	]
 });
@@ -114,6 +118,37 @@ function onClick(e) {
 		});
 	}
 }
+
+// 右侧按钮的点击事件处理函数
+function buttonClick(e) {
+	// 1. 判断是否点击了加入购物车按钮
+	if (e.content.text === '加入购物车') {
+		console.log(e);
+		// 2. 创建一个商品的信息对象 {goods_id, goods_name, goods_price, goods_count, goods_smail_log, goods_state}
+		const goods = reactive({
+			data: {
+				goods_id: goods_detail.data.goods_id,
+				goods_name: goods_detail.data.goods_name,
+				goods_price: goods_detail.data.goods_price,
+				goods_count: 1,
+				goods_small_logo: goods_detail.data.goods_small_logo,
+				goods_state: true
+			}
+		});
+		// 3. 调用pinia的addToCart方法，把商品信息对象存储到购物车中
+		store.addToCart(goods.data);
+	}
+}
+
+// 动态为购物车按钮的info属性赋值
+watch(
+	store,
+	new_value => {
+		options.data[1].info = store.total;
+	},
+	// immediate属性用来声明此侦听器，是否在页面初次加载完毕后立即调用
+	{ immediate: true }
+);
 </script>
 
 <style lang="scss">

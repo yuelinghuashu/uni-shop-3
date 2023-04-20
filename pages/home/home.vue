@@ -67,7 +67,9 @@
 </template>
 
 <script setup>
+import { onShow } from '@dcloudio/uni-app';
 import { reactive, ref, onMounted } from 'vue';
+import { setBadge } from '../../mixins/tabbar-badge.js';
 
 // 1. 轮播图的数据列表，默认为空数组
 const swiperList = reactive({
@@ -89,6 +91,11 @@ onMounted(() => {
 	getSwiperList();
 	getNavList();
 	getFloorList();
+});
+
+onShow(() => {
+	// 在页面刚展示的时候，设置数字徽标
+	setBadge();
 });
 
 // 3. 获取轮播图数据的方法

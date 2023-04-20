@@ -29,12 +29,6 @@ function gotoSearch() {
 		url: '/subpkg/search/search'
 	});
 }
-
-// function searchBoxHandler() {
-// 	console.log('~!~~');
-// 	// uni.$emit 触发全局的自定义事件，附加参数都会传给监听器回调函数。
-// 	uni.$emit('click');
-// }
 </script>
 
 <style lang="scss">

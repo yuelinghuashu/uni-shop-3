@@ -57,7 +57,17 @@
 			"minified": true,
 			"checkSiteMap": false
 		},
-		"usingComponents": true
+		"usingComponents": true,
+		"requiredPrivateInfos": [
+			"getFuzzyLocation",
+			"choosePoi",
+			"chooseAddress"
+		],
+		"permission": {
+			"scope.userLocation": {
+				"desc": "你的位置信息将用来进行接口调试"
+			}
+		}
 	},
 	"vueVersion": "3"
 }

@@ -2,12 +2,14 @@
 	<view>My</view>
 </template>
 
-<script lang="ts">
-export default {
-	data() {
-		return {};
-	}
-};
+<script setup>
+import { onShow } from '@dcloudio/uni-app';
+import { onMounted } from 'vue';
+import { setBadge } from '../../mixins/tabbar-badge.js';
+
+onShow(() => {
+	setBadge();
+});
 </script>
 
 <style></style>

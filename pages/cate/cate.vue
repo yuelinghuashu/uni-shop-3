@@ -34,7 +34,9 @@
 </template>
 
 <script setup>
+import { onShow } from '@dcloudio/uni-app';
 import { onMounted, reactive, ref } from 'vue';
+import { setBadge } from '../../mixins/tabbar-badge.js';
 
 // 当前设备可用的高度
 const wh = ref(0);
@@ -62,6 +64,11 @@ onMounted(() => {
 	wh.value = sysInfo.windowHeight - 50;
 
 	getCateList();
+});
+
+onShow(() => {
+	// 在页面刚展示的时候，设置数字徽标
+	setBadge();
 });
 
 // 获取分类数据列表
